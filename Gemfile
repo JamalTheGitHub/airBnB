@@ -60,5 +60,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+<<<<<<< HEAD
 gem 'clearance'
 gem 'figaro'
+=======
+gem 'clearance'
+>>>>>>> d5c16cd17af0cbbe1710618cb926b2dee75e221f
