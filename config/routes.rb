@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  get 'listings/new'
+  get 'listings/show'
   get 'home/index'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
+  resources :listings
 
 
   
