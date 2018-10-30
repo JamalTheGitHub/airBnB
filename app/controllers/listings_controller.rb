@@ -9,6 +9,7 @@ class ListingsController < ApplicationController
   end
 
   def new
+    @listing = Listing.new
   end
 
   def create
@@ -16,7 +17,29 @@ class ListingsController < ApplicationController
     @listing.user_id = current_user.id
     if @listing.save
       redirect_to root_url
+    else
+      render 'new'
     end
+  end
+
+  def edit
+    @listing = Listing.find(params[:id])
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    if @listing.update(listing_params)
+      redirect_to root_url
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @listing = Listing.find(params[:id])
+    @listing.destroy
+
+    redirect_to root_url
   end
 
   private
