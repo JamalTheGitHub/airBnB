@@ -1,6 +1,5 @@
-<h1>New List</h1>
-
-<%= form_with scope: :listing, url:listings_path , local: true do |form| %>
+<h1>Edit List</h1>
+<%= form_with(model: @listing, local: true) do |form| %>
   <p>
     <%= form.label :title %><br/>
     <%= form.text_field :title %><br/>
@@ -8,14 +7,12 @@
   <p>
     <%= form.label :address %><br/>
     <%= form.text_field :address %><br/>
-  </p>
+  </P>
   <p>
     <%= form.label :price_per_day %><br/>
-    <%= form.text_field :price_per_day %><br/>
+    <%= form.text_field :price_per_day %><br/> 
   </p>
-  <p>
-    <%= form.submit %>
-  </p>
+  <%= form.submit %>
 <% end %>
 
 <%= link_to 'Back', home_index_path %>
