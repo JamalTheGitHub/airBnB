@@ -65,3 +65,4 @@ gem 'clearance'
 gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
