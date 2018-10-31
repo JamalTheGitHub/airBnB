@@ -2,6 +2,7 @@ class User < ApplicationRecord
   include Clearance::User
 
   has_many :authentications, dependent: :destroy
+  has_many :listings
 
   def name
     name = "#{first_name} " "#{last_name}"
