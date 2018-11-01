@@ -47,6 +47,12 @@
     <%= form.label :baths %><br/>
     <%= form.text_field :baths %><br/> 
   </p>
+
+  <p>
+    <%= form.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= form.text_field :tag_list %>
+  </p>
+
   <%= form.submit %>
 <% end %>
 

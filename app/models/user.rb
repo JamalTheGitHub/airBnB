@@ -1,8 +1,13 @@
 class User < ApplicationRecord
   include Clearance::User
 
+  paginates_per 5
+  max_paginates_per 100
+  
   has_many :authentications, dependent: :destroy
   has_many :listings
+  enum role: [ :superadmin, :moderator, :customer ]
+
 
   def name
     name = "#{first_name} " "#{last_name}"
