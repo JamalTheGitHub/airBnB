@@ -1,7 +1,8 @@
 class ListingsController < ApplicationController
+  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def show
-    @listing = Listing.find(params[:id])
   end
   
   def index
@@ -23,11 +24,9 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.find(params[:id])
   end
 
   def update
-    @listing = Listing.find(params[:id])
     if @listing.update(listing_params)
       redirect_to root_url
     else
@@ -36,7 +35,6 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    @listing = Listing.find(params[:id])
     @listing.destroy
 
     redirect_to root_url
@@ -44,6 +42,17 @@ class ListingsController < ApplicationController
 
   private
   def listing_params
-    params.require(:listing).permit(:title, :address, :price_per_day, :description, :amenities, :guests, :bedrooms, :beds, :sleeping_arrangements, :baths)
+    params.require(:listing).permit(:title, :address, :price_per_day, :description, :amenities, :guests, :bedrooms, :beds, :sleeping_arrangements, :baths, :tag_list)
+  end
+
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end
+
+  def authorize_user
+    # user is redirected UNLESS they are the property owner OR a moderator/superadmin
+    if current_user.id != @listing.user_id && current_user.customer?
+      redirect_to root_url, notice: "You're not authorized to do that."
+    end
   end
 end

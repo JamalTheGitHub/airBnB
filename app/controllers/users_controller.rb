@@ -1,5 +1,8 @@
 class UsersController < Clearance::UsersController
 
+  def index
+    @users = User.order(:name).page(params[:page])
+  end
   private
 
   def user_from_params
