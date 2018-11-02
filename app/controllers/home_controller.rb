@@ -6,5 +6,6 @@ class HomeController < ApplicationController
     else
     @listings = Listing.all
     end
+    @listings = Listing.order('title').page(params[:page]).per(5)
   end
 end
