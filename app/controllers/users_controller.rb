@@ -3,6 +3,29 @@ class UsersController < Clearance::UsersController
   def index
     @users = User.all
   end
+
+  def new
+    @user = User.new
+  end
+  
+  def show
+    @user = User.find(params[:id])
+    @listing = Listing.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params.permit!)
+      redirect_to user_path(@user.id)
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def user_from_params
@@ -10,14 +33,14 @@ class UsersController < Clearance::UsersController
     password = user_params.delete(:password)
     first_name = user_params.delete(:first_name)
     last_name = user_params.delete(:last_name)
-    phone_number = user_params.delete(:phone_number)
+    avatar = user_params.delete(:avatar)
 
     Clearance.configuration.user_model.new(user_params).tap do |user|
       user.email = email
       user.password = password
       user.first_name = first_name
       user.last_name = last_name
-      user.phone_number = phone_number
+      user.avatar = avatar
     end
   end
 

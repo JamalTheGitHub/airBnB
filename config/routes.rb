@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
   
-  resources :users, controller: "users", only: [:create] do
+  resources :users, controller: "users", only: [:create, :show, :edit, :update] do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]

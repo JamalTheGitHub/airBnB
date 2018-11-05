@@ -2,8 +2,11 @@ class User < ApplicationRecord
   include Clearance::User
   
   has_many :authentications, dependent: :destroy
-  has_many :listings
+  has_many :listings, dependent: :destroy
+  has_many :reservations, dependent: :destroy
   enum role: [ :superadmin, :moderator, :customer ]
+
+  mount_uploader :avatar, AvatarUploader
 
 
   def name

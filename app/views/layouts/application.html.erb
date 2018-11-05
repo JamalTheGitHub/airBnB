@@ -23,13 +23,21 @@
         <li class="nav-item active">
           <a class="nav-link" href="/home/index">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item active">
-          <% if signed_in? %>
-            <a class="nav-link" href="/sign_out">Sign Out</a>
-          <% else %>
-            <a class="nav-link" href="/sign_in">Sign In</a>
-          <% end %>
-        </li>
+        <% if signed_in? %>
+          <li class="nav-item active">
+            <%= link_to 'Logout' , sign_out_path , :method => :delete , class:'nav-link' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to 'Create New List', new_listing_path , class:'nav-link' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to 'My Profile', user_path(current_user) , class:'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item active">
+            <%= link_to 'Sign In' , sign_in_path , class:'nav-link' %>
+          </li>
+        <% end %>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -37,14 +45,7 @@
       </form>
     </div>
   </nav>
-
-
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-    <% end -%>
-  </div>
-
+  
   <div id="flash">
     <% flash.each do |key, value| -%>
       <div id="flash_<%= key %>"><%=h value %></div>
