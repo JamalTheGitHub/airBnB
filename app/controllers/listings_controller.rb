@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def show
+    @reservation = Reservation.new
   end
   
   def index

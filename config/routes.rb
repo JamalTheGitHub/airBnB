@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'home/index'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
-  resources :listings
+  resources :listings do
+    resources :reservations
+  end
 
 
   
