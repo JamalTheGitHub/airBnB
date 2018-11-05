@@ -2,44 +2,43 @@
   <div class="row">
     <div class="col">
 
-    </div>
-    <div class="col-8">
+
       <h1>Jamal's BnB</h1>
       <p> Welcome to the best BnB site for quality stay at affordable prices! </p>
     
     
       <% if signed_in? %>
+
       <% else %>
         Have an account?<%= link_to t(".sign_in"), sign_in_path %>
       <% end %>
       <h2>List of Accomodation</h2>
-        <% if signed_in? %>
-          <%= link_to 'Create New List', new_listing_path %>
+        <% @listings.each do |listing| %>
+          <tr>
+            <div class="d-inline-block">
+              <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><%= listing.title %></h5>
+                  <p class="card-text"><%= listing.description %></p>
+                  <td><%= link_to 'Show', listing_path(listing) %></td>
+                </div>
+                <% if signed_in? %>
+                  <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+                  <td><%= link_to 'Destroy', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <form action="/action_page.php">
+                    Place a booking: Start Date
+                    <input type="date" name="booking"><br/>
+                    Place a booking: End Date
+                    <input type="date" name="booking"><br/>
+                    <input type="submit">
+                  </form>
+                <% end %>
+              </div>
+            </div>
+          </tr>
         <% end %>
-      <table class="table" style="">
-        <tr>
-          <th>Title</th>
-          <th>Address</th>
-          <th>Price Per Day</th>
-          <th></th>
-        </tr>
-          <% @listings.each do |listing| %>
-            <tr>
-              <td><%= listing.title %></td>
-              <td><%= listing.address %></td>
-              <td><%= listing.price_per_day %></td>
-              <td><%= listing.tags.map(&:name).join(",") %></td>
-              <% if signed_in? %>
-                <td><%= link_to 'Show', listing_path(listing) %></td>
-                <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
-                <td><%= link_to 'Destroy', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% end %>
-            </tr>
-          <% end %>
-      </table>
       <%= paginate @listings %>
-    </div>
-    <div class="col">
 
     </div>
   </div>

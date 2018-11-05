@@ -36,13 +36,12 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing.destroy
-
-    redirect_to root_url
+    redirect_to back #method comes back from applicationController
   end
 
   private
   def listing_params
-    params.require(:listing).permit(:title, :address, :price_per_day, :description, :amenities, :guests, :bedrooms, :beds, :sleeping_arrangements, :baths, :tag_list)
+    params.require(:listing).permit(:title, :address, :price_per_day, :description, :amenities, :guests, :bedrooms, :beds, :sleeping_arrangements, :baths, :tag_list, {pictures: []})
   end
 
   def set_listing

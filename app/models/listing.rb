@@ -1,7 +1,10 @@
 class Listing < ApplicationRecord
   belongs_to :user
+  has_many :reservations, dependent: :destroy
   has_many :taggings
   has_many :tags, through: :taggings
+
+  mount_uploaders :pictures, AvatarUploader
 
 
   def self.tagged_with(name)

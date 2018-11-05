@@ -52,6 +52,11 @@
   </p>
 
   <p>
+  <%= form.label :pictures %>
+  <%= form.file_field :pictures, multiple: true %>
+  </p>
+
+  <p>
     <%= form.label :tag_list, "Tags (separated by commas)" %><br />
     <%= form.text_field :tag_list %>
   </p>
