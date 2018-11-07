@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def show
+    @listings = Listing.all
   end
 
   def index
@@ -11,6 +12,7 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
+    @listing = Listing.new
   end
 
   def create
@@ -21,7 +23,8 @@ class ReservationsController < ApplicationController
     if @reservation.save
       redirect_to root_url
     else
-      render 'new'
+      redirect_to back
+      flash[:error] = @reservation.errors.full_messages.join(",")
     end
   end
 
@@ -29,6 +32,12 @@ class ReservationsController < ApplicationController
   end
 
   def update
+    if @reservation.update(reservation_params)
+      # byebug
+      redirect_to user_path(current_user)
+    else
+      render 'edit'
+    end
   end
 
   private
@@ -38,6 +47,15 @@ class ReservationsController < ApplicationController
   end
 
   def set_reservation
+    # byebug
     @reservation = Reservation.find(params[:id])
   end
+
+  def authorize_user
+    # user is redirected UNLESS they are the property owner OR a moderator/superadmin
+    if current_user.id != @reservation.user_id && current_user.customer?
+      redirect_to root_url, notice: "You're not authorized to do that."
+    end
+  end
+
 end
