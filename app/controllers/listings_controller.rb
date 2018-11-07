@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
 
   def show
     @reservation = Reservation.new
+    @listing = Listing.find(params[:id])
   end
   
   def index

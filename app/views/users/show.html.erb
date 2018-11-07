@@ -21,3 +21,13 @@
   <%= link_to 'Show', listing_path(listing) %>
   <%= link_to 'Edit', edit_listing_path(listing) %><br/>
 <% end %>
+
+<h4>Reservations Made:</h4>
+<% @user.reservations.each do |reservation| %>
+  <strong>Start Date:</strong><br/>
+  <%= reservation.start_date %><br/>
+  <strong>End Date:</strong><br/>
+  <%= reservation.end_date %><br/>
+  <strong>Total Price: RM<%= reservation.total_price %></strong><br/>
+  <%= link_to 'Edit', edit_listing_reservation_path(reservation.listing, reservation), class:'btn btn-primary' %><br/>
+<% end %>
