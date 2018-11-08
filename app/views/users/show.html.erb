@@ -29,5 +29,6 @@
   <strong>End Date:</strong><br/>
   <%= reservation.end_date %><br/>
   <strong>Total Price: RM<%= reservation.total_price %></strong><br/>
+  <%= link_to "Make Payment", payNow_path(reservation.id) %><br>
   <%= link_to 'Edit', edit_listing_reservation_path(reservation.listing, reservation), class:'btn btn-primary' %><br/>
 <% end %>
