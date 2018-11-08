@@ -6,7 +6,7 @@ class Reservation < ApplicationRecord
            :cannot_predate_current_date
            
   def total_price
-    (self.end_date.to_date - self.start_date.to_date).to_i * self.listing.price_per_day
+    ((self.end_date.to_date + 1) - self.start_date.to_date).to_i * self.listing.price_per_day
   end
 
   private
