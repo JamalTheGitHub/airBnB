@@ -21,6 +21,7 @@ class ReservationsController < ApplicationController
     @reservation.listing_id = params[:listing_id]
     @reservation.user_id = current_user.id
     if @reservation.save
+      ReservationMailer.reservation_email(@reservation.user, @reservation.listing.user,@reservation).deliver_now
       redirect_to root_url
     else
       redirect_to back
@@ -38,6 +39,11 @@ class ReservationsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @reservation.destroy
+    redirect_to back #method comes back from applicationController
   end
 
   private
