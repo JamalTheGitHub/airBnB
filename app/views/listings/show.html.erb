@@ -42,6 +42,12 @@
   <%= @listing.baths %>
 </p>
 
+<<<<<<< HEAD
+<p>
+  <strong>Country:</strong>
+  <%= @listing.country %>
+</p>
+=======
 <%= form_with scope: @reservation , url: listing_reservations_path(@listing.id), local:true do |form| %>
   <p>
     <strong>Place a booking?</strong><br/>
@@ -52,5 +58,6 @@
     <%= form.submit %>
   </p>
 <% end %>
+>>>>>>> acafd4f4c0be76f49b8b0eaf0a6ef094ab9d91aa
 
 <%= link_to 'Back', home_index_path %>
