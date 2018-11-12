@@ -1,8 +1,13 @@
 class Listing < ApplicationRecord
+  include Filterable
+
   belongs_to :user
   has_many :reservations, dependent: :destroy
   has_many :taggings
   has_many :tags, through: :taggings
+
+  
+  scope :bedrooms, -> (bedrooms){where('bedrooms = ?', bedrooms)}
 
   mount_uploaders :pictures, AvatarUploader
 
