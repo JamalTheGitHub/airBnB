@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'listings/new'
   get 'listings/show'
   get 'home/index'
+  post 'home/index'
   post 'reservation/:id/braintree/checkout' => "braintree#checkout", as: "checkout"
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]

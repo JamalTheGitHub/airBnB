@@ -64,7 +64,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp-mail.outlook.com',
     port:                 587,
-    domain:               'example.com',
+    domain:               'AirBnB.com',
     user_name:            ENV['user_name'], # don't put sensitive information directly in this file!
     password:             ENV['password'],
     authentication:       'plain',

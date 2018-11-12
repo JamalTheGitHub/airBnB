@@ -6,10 +6,6 @@ class ListingsController < ApplicationController
     @reservation = Reservation.new
     @listing = Listing.find(params[:id])
   end
-  
-  def index
-    @listings = Listing.all
-  end
 
   def new
     @listing = Listing.new
