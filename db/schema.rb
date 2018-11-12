@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2018_31_10_123009) do
     t.string "baths"
     t.boolean "verification"
     t.json "pictures"
+    t.string "country"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
