@@ -1,0 +1,36 @@
+<img src="<%=@user.avatar.url %>" alt="..." class="img-thumbnail">
+
+<h3>Welcome <%= "#{@user.name}" %></h3>
+<%= link_to "Edit Profile", edit_user_path(@user) %>
+
+<div>
+  Contact via: <strong><%= "#{@user.email}" %></strong><br/>
+</div>
+
+<h4>List of post(s)<h4>
+<% @user.listings.each do |listing| %>
+  
+  <% if listing.pictures? %>
+    <% listing.pictures.each do |img| %>
+      <img src="<%= img.url %>" alt="..." class="img-thumbnail" width="200">
+    <% end %><br/>
+  <% end %>
+  
+  <%= listing.title %>
+  <%= link_to 'Destroy', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Show', listing_path(listing) %>
+  <%= link_to 'Edit', edit_listing_path(listing) %><br/>
+<% end %>
+
+<h4>Reservations Made:</h4>
+<% @user.reservations.each do |reservation| %>
+  <strong>Start Date:</strong><br/>
+  <%= reservation.start_date %><br/>
+  <strong>End Date:</strong><br/>
+  <%= reservation.end_date %><br/>
+  <strong>Total Price: RM<%= reservation.total_price %></strong><br/>
+  <%= link_to "Make Payment", payNow_path(reservation.id) %><br>
+  <%= link_to 'Edit', edit_listing_reservation_path(reservation.listing, reservation), class:'btn btn-primary' %><br/>
+  <%= link_to 'Destroy', listing_reservation_path(reservation.listing, reservation), method: :delete, data: { confirm: 'Are you sure?' } %><br/>
+
+<% end %>
