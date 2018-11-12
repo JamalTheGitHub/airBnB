@@ -7,7 +7,7 @@ class Listing < ApplicationRecord
   has_many :tags, through: :taggings
 
   
-  scope :bedrooms, -> (bedrooms){where('bedrooms = ?', bedrooms)}
+  scope :bedrooms, -> (number){where('bedrooms = ?', number)}
 
   mount_uploaders :pictures, AvatarUploader
 
