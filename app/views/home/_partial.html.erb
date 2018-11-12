@@ -7,7 +7,7 @@
       <p> Welcome to the best BnB site for quality stay at affordable prices! </p>
 
       <%= form_with url: home_index_path, class:'form-inline my-2 my-lg-0' , method: :GET do |form| %>
-      <%= form.text_field :bedrooms , class:'form-control mr-sm-2', type:'search', placeholder:'Search'%>
+      <%= form.text_field :country , class:'form-control mr-sm-2', type:'search', placeholder:'Search'%>
       <%= form.submit "Search" , class:'btn btn-outline-success my-2 my-sm-0' %>
       <% end %>
     

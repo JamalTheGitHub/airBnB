@@ -8,6 +8,7 @@ class Listing < ApplicationRecord
 
   
   scope :bedrooms, -> (number){where('bedrooms = ?', number)}
+  scope :country, -> (country){where("country like ?", "#{country}%")}
 
   mount_uploaders :pictures, AvatarUploader
 
