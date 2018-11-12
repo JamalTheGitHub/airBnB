@@ -9,11 +9,6 @@
 </div>
 
 <div class="text-field">
-  <%= form.label :phone_number %>
-  <%= form.text_field :phone_number, type: 'text' %>
-</div>
-
-<div class="text-field">
   <%= form.label :email %>
   <%= form.text_field :email, type: 'email' %>
 </div>
@@ -21,6 +16,11 @@
 <div class="password-field">
   <%= form.label :password %>
   <%= form.password_field :password %>
+</div>
+
+<div>
+  <%= form.label :avatar %>
+  <%= form.file_field :avatar %>
 </div>
 
 

@@ -2,4 +2,6 @@
 
 require_relative 'config/environment'
 
+require 'carrierwave/orm/activerecord'
+
 run Rails.application
