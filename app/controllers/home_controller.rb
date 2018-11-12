@@ -4,10 +4,18 @@ class HomeController < ApplicationController
     # @listings = Listing.order('title').page(params[:page]).per(9)
     @users = User.order(:name).page(params[:page])
     @listings = Listing.filter(params.slice(:bedrooms)).page(params[:page]).per(9)
+    # byebug
     if params[:tag]
       @listings = params[:tag]
       Listing.tagged_with(params[:tag])
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json:@listings}
+    end
+
   end
 
   private
