@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     # @listings = Listing.all
     # @listings = Listing.order('title').page(params[:page]).per(9)
     @users = User.order(:name).page(params[:page])
-    @listings = Listing.filter(params.slice(:bedrooms)).page(params[:page]).per(9)
+    @listings = Listing.filter(params.slice(:country)).page(params[:page]).per(9)
     # byebug
     if params[:tag]
       @listings = params[:tag]
